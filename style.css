@@ -1,0 +1,363 @@
+/* *{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #548687;
+    text-align: center;
+}
+
+.container{
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game{
+    height: 60vmin;
+    width: 60vmin;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5vmin;
+}
+
+.box{
+    height: 18vmin;
+    width: 18vmin;
+    border-radius: 1rem;
+    border: none;
+    box-shadow: 0 0 1rem rgba(0,0,0,0.3);
+    font-size: 8vmin;
+    color: #b0413e;
+    background-color: #ffffc7;
+}
+
+#reset-btn{
+    padding: 1rem;
+    font-size: 1.25rem;
+    background-color: #191913;
+    color: #fff;
+    border-radius: 1rem;
+    border: none;
+}
+
+#msg{
+    color: #ffffc7;
+    font-size: 8vmin;
+}
+
+.msg-container{
+    height: 100vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.hide{
+    display: none;
+}
+
+#new-btn{
+    height: 5vmin;
+    width: 15vmin;
+    border: none;
+    border-radius: 1rem;
+}
+
+h1{
+    margin-top: 8vmin;
+} */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+
+    /* Background */
+    background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+
+    color: #2d1b36;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main game area */
+main {
+    width: 100%;
+    max-width: 600px;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+/* Heading */
+h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+
+    color: #4a1942;
+
+    letter-spacing: 2px;
+
+    text-shadow: 0 3px 8px rgba(74, 25, 66, 0.2);
+}
+
+/* Subtitle */
+h1::after {
+    content: "PLAYER O  •  PLAYER X";
+
+    display: block;
+
+    font-size: 0.9rem;
+    font-weight: normal;
+
+    margin-top: 10px;
+
+    color: #704c72;
+
+    letter-spacing: 3px;
+}
+
+
+/* ========================= */
+/* Game Board */
+/* ========================= */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 35px 0;
+}
+
+.game {
+    width: min(90vw, 420px);
+    height: min(90vw, 420px);
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    gap: 12px;
+
+    padding: 12px;
+
+    /* Board background */
+    background: #cdb4db;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 40px rgba(90, 45, 100, 0.25),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+
+/* ========================= */
+/* Boxes */
+/* ========================= */
+
+.box {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+
+    border-radius: 16px;
+
+    /* Box background */
+    background: #fff1f8;
+
+    /* Text color */
+    color: #c44569;
+
+    font-size: clamp(3rem, 10vw, 5rem);
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Box hover */
+.box:hover:not(:disabled) {
+    background: #ffe0ef;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 20px rgba(150, 60, 110, 0.2);
+}
+
+
+/* Box click */
+.box:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+
+/* Disabled boxes */
+.box:disabled {
+    cursor: default;
+}
+
+
+/* ========================= */
+/* Reset Button */
+/* ========================= */
+
+#reset-btn {
+    border: none;
+
+    padding: 13px 28px;
+
+    border-radius: 12px;
+
+    background: #8e4585;
+
+    color: white;
+
+    font-size: 1rem;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+#reset-btn:hover {
+    background: #703568;
+
+    transform: translateY(-2px);
+}
+
+
+/* ========================= */
+/* Winner / Draw Screen */
+/* ========================= */
+
+.msg-container {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 25px;
+
+    background: rgba(74, 25, 66, 0.92);
+
+    backdrop-filter: blur(10px);
+}
+
+
+/* Winner message */
+#msg {
+    font-size: clamp(2rem, 7vw, 4rem);
+
+    font-weight: bold;
+
+    color: #fff1f8;
+
+    text-align: center;
+
+    padding: 0 20px;
+}
+
+
+/* New Game button */
+#new-btn {
+    border: none;
+
+    padding: 14px 30px;
+
+    border-radius: 12px;
+
+    background: #fff1f8;
+
+    color: #6b315e;
+
+    font-size: 1rem;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+#new-btn:hover {
+    transform: scale(1.05);
+
+    background: white;
+}
+
+
+/* Hide winner screen */
+.hide {
+    display: none;
+}
+
+
+/* ========================= */
+/* Mobile */
+/* ========================= */
+
+@media (max-width: 500px) {
+
+    main {
+        padding: 20px 15px;
+    }
+
+    h1 {
+        font-size: 2.3rem;
+    }
+
+    .game {
+        width: 90vw;
+        height: 90vw;
+
+        gap: 8px;
+
+        padding: 8px;
+
+        border-radius: 18px;
+    }
+
+    .box {
+        border-radius: 12px;
+    }
+
+    #reset-btn {
+        padding: 12px 24px;
+    }
+}
